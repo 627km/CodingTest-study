@@ -7,7 +7,6 @@ const input = fs.readFileSync("./input.txt").toString().split("\r\n");
 let num = Number(input[0].toString().split(" ")[1]);
 let array = input[1].toString().split(" ");
 let resultArr = array.filter((value) => value < num);
-
 let result = "";
 
 for (let i = 0; i < resultArr.length; i++) {
