@@ -3,35 +3,19 @@ let input = fs.readFileSync('./dev/stdin').toString().split('\n');
 
 let N = Number(input[0]);
 
-let distance = [];
-distance = input[1].split(' ').map(Number);
+let dist = input[1].split(' ').map(Number);
+let price = input[2].split(' ').map(Number);
 
-let price = [];
-price = input[2]
-    .split(' ')
-    .map(Number)
-    .slice(0, price.length - 1);
-
-let sum = 0;
-
-let flag = false;
-
-while (!flag) {
-    for (let i = 0; i < price.length; i++) {
-        let min = Math.min(...price);
-        if (price[i] === min) {
-            let totalDistance = 0;
-            for (let j = 0; j < distance.length; j++) {
-                totalDistance += distance[j];
-            }
-            sum += price[i] * totalDistance;
-            flag = true;
-            break;
-        } else {
-            sum += price[i] * distance[i];
-            distance[i] = 0;
-        }
-    }
+let min = price[0];
+for (let i = 0; i < price.length; i++) {
+    min = Math.min(min, price[i]);
+    price[i] = min;
 }
 
-console.log(sum);
+let answer = 0;
+
+for (let i = 0; i < N - 1; i++) {
+    answer += price[i] * dist[i];
+}
+
+console.log(answer);
